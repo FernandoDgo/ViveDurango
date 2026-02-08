@@ -3,346 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vive Durango - Tradición y Aventura</title>
+    <title>Vive Durango | Gastronomía, Magia, Aventura, Rutas y Tradición</title>
     <style>
-        /* 1. PALETA DE COLORES Y VARIABLES */
         :root {
-            --primary: #8a1538;    /* Vino Tinto Durango */
-            --accent: #c5a059;     /* Dorado Antiguo */
-            --bg-page: #fdfaf5;    /* Crema Suave */
-            --text-main: #34495e;  /* Gris Profesional */
-            --white: #ffffff;
+            --primary: #630e21; /* Vino Durango */
+            --accent: #d4af37;  /* Dorado elegante */
+            --light: #fcf9f2;   /* Crema suave */
+            --text: #333;
         }
 
-        /* 2. ESTILOS GENERALES */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            background-color: var(--bg-page);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
 
-        /* 3. ENCABEZADO Y LOGO */
+        body { background-color: var(--light); color: var(--text); line-height: 1.6; }
+
+        /* Encabezado */
         header {
             background-color: var(--primary);
-            color: var(--white);
+            color: white;
             padding: 40px 20px;
             text-align: center;
             border-bottom: 5px solid var(--accent);
         }
 
         .logo {
-            width: 140px;
-            height: 140px;
-            margin-bottom: 15px;
-            border: 3px solid var(--accent);
+            width: 180px; /* Tamaño ideal para el logo circular */
+            height: 180px;
             border-radius: 50%;
-            background: var(--white);
-            padding: 5px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            object-fit: contain;
+            border: 3px solid var(--accent);
+            background-color: white;
+            margin-bottom: 15px;
+            object-fit: cover;
         }
 
-        header h1 { margin: 10px 0; font-size: 2.2rem; }
-        header p { 
-            letter-spacing: 2px; 
-            text-transform: uppercase; 
-            font-size: 0.9rem; 
-            color: var(--accent);
-            font-weight: bold;
-        }
+        header h1 { font-size: 2.5rem; margin-bottom: 5px; letter-spacing: 2px; }
+        header p { font-size: 1rem; color: var(--accent); font-weight: bold; text-transform: uppercase; }
 
-        /* 4. CLIMA Y FILTROS */
-        .weather-bar {
-            background: #2c3e50;
-            color: white;
-            padding: 15px;
+        /* Sección Esencia G.M.A.R.T. */
+        .esencia {
+            background: white;
+            padding: 40px 20px;
             text-align: center;
-            font-weight: bold;
+            border-bottom: 1px solid #ddd;
         }
 
-        .filter-section {
-            background: var(--white);
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        .esencia h2 { color: var(--primary); margin-bottom: 15px; }
+        .esencia p { max-width: 700px; margin: 0 auto; font-size: 1.2rem; font-style: italic; color: #555; }
+        .highlight { color: var(--primary); font-weight: bold; }
+
+        /* Filtros y Contenido */
+        .container { padding: 20px; max-width: 1000px; margin: 0 auto; }
+        
+        .filter-box {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px 0;
+            margin-bottom: 20px;
         }
 
-        select {
-            padding: 12px 20px;
-            width: 280px;
-            border-radius: 25px;
-            border: 2px solid var(--accent);
+        .filter-btn {
+            background: white;
+            border: 2px solid var(--primary);
             color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            white-space: nowrap;
             font-weight: bold;
-            font-size: 1rem;
-            outline: none;
+            transition: 0.3s;
         }
 
-        /* 5. RECOMENDACIONES DE SEGURIDAD */
-        .safety-box {
-            background-color: #fff3cd;
-            border-left: 5px solid var(--accent);
-            padding: 15px;
-            margin: 20px auto;
-            max-width: 800px;
-            border-radius: 5px;
-            display: none;
-            animation: fadeIn 0.5s;
-        }
-
-        /* 6. GRID DE LUGARES */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            padding: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        .filter-btn:hover { background: var(--primary); color: white; }
 
         .card {
-            background: var(--white);
+            background: white;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            border-top: 4px solid var(--accent);
-            transition: transform 0.3s;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        .card:hover { transform: translateY(-5px); }
 
-        .card-img { width: 100%; height: 220px; object-fit: cover; }
-
-        .card-content { padding: 20px; }
+        .card-img { width: 100%; height: 200px; background: #ddd; object-fit: cover; }
         
-        .municipio-tag {
-            background-color: var(--primary);
-            color: var(--white);
-            padding: 3px 12px;
-            border-radius: 15px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-        }
+        .card-content { padding: 20px; }
+        .card-tag { color: var(--primary); font-weight: bold; font-size: 0.9rem; }
+        .card-title { font-size: 1.4rem; margin: 5px 0; color: var(--primary); }
 
-        .card-eslogan {
-            display: block;
-            font-style: italic;
-            color: var(--accent);
-            font-size: 0.95rem;
-            margin: 8px 0;
-            font-weight: 600;
-        }
-
-        .map-container iframe { width: 100%; height: 150px; border: none; }
-
-        /* 7. FORMULARIO DE RESEÑAS */
-        .review-section {
-            max-width: 700px;
-            margin: 50px auto;
-            background: var(--white);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #ddd;
-        }
-
-        .review-form input, .review-form textarea {
-            width: 100%; padding: 12px; margin: 10px 0;
-            border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;
-        }
-
-        .btn-send {
-            background-color: var(--primary);
-            color: var(--white);
-            border: 2px solid var(--accent);
-            padding: 15px;
-            width: 100%;
+        /* Botones de Acción */
+        .actions { display: flex; gap: 10px; margin-top: 15px; }
+        
+        .btn {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
             border-radius: 8px;
+            text-decoration: none;
             font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
-        /* 8. BOTÓN DE LLAMADA FLOTANTE */
-        .btn-call {
-            position: fixed; bottom: 30px; right: 30px;
-            background-color: var(--primary); color: white;
-            width: 60px; height: 60px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            text-decoration: none; font-size: 24px; z-index: 1000;
-            border: 2px solid var(--accent);
-        }
+        .btn-call { background: var(--primary); color: white; }
+        .btn-wa { background: #25d366; color: white; }
 
-        /* 9. FOOTER Y MODAL */
-        footer {
-            background-color: #2c3e50; color: white;
-            padding: 30px; text-align: center; margin-top: 50px; font-size: 0.8rem;
-        }
-        .privacy-link { color: var(--accent); cursor: pointer; font-weight: bold; }
+        footer { text-align: center; padding: 30px; color: #888; font-size: 0.9rem; }
 
-        .modal {
-            display: none; position: fixed; z-index: 2000;
-            left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.8);
-        }
-        .modal-content {
-            background: white; margin: 10% auto; padding: 25px;
-            width: 80%; max-width: 500px; border-radius: 10px;
-        }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="https://via.placeholder.com/150/8a1538/ffffff?text=VIVE+DURANGO" alt="Logo Vive Durango" class="logo">
+    <img src="logo.png" alt="Logo Vive Durango" class="logo">
     <h1>Vive Durango</h1>
-    <p>Tradición y Aventura</p>
+    <p>Gastronomía • Magia • Aventura • Rutas • Tradición</p>
 </header>
 
-<div class="weather-bar" id="weatherBar">📍 Selecciona un municipio para comenzar</div>
+<section class="esencia">
+    <h2>Nuestra Esencia G.M.A.R.T.</h2>
+    <p>
+        "En <span class="highlight">Vive Durango</span>, la esencia es que disfrutes de nuestra 
+        <span class="highlight">G</span>astronomía, <span class="highlight">M</span>agia, 
+        <span class="highlight">A</span>ventura, <span class="highlight">R</span>utas y 
+        <span class="highlight">T</span>radición."
+    </p>
+</section>
 
-<div class="filter-section">
-    <select id="municipioSelect" onchange="actualizarApp()">
-        <option value="todos">Todos los municipios</option>
-        <option value="Durango">Durango (Capital)</option>
-        <option value="Mapimí">Mapimí (Pueblo Mágico)</option>
-        <option value="Nombre de Dios">Nombre de Dios</option>
-        <option value="Pueblo Nuevo">Pueblo Nuevo (Sierra)</option>
-    </select>
-</div>
+<div class="container">
+    <div class="filter-box">
+        <button class="filter-btn">Todos</button>
+        <button class="filter-btn">Pueblos Mágicos</button>
+        <button class="filter-btn">Ecoturismo</button>
+        <button class="filter-btn">Cine</button>
+    </div>
 
-<div id="safetyBox" class="safety-box">
-    <strong>💡 Recomendación de viaje:</strong> <span id="safetyText"></span>
-</div>
-
-<div class="grid" id="lugaresGrid"></div>
-
-<div class="review-section">
-    <h2 style="text-align: center; color: var(--primary);">Comparte tu Experiencia</h2>
-    <div class="review-form">
-        <input type="text" id="revNombre" placeholder="Tu nombre">
-        <textarea id="revTexto" rows="3" placeholder="¿Qué te pareció tu visita?"></textarea>
-        <button class="btn-send" onclick="enviarWhatsApp()">Enviar Reseña a WhatsApp</button>
+    <div class="card">
+        <div class="card-img" style="background-image: url('https://via.placeholder.com/800x400'); background-size: cover;"></div>
+        <div class="card-content">
+            <span class="card-tag">MAGIA • NOMBRE DE DIOS</span>
+            <h3 class="card-title">Cascadas de El Saltito</h3>
+            <p>Un escenario natural impresionante, famoso por ser locación de múltiples películas de Hollywood.</p>
+            
+            <div class="actions">
+                <a href="tel:6181234567" class="btn btn-call">📞 Llamar</a>
+                <a href="https://wa.me/526181234567?text=Hola,%20me%20interesa%20visitar%20Durango" class="btn btn-wa">💬 WhatsApp</a>
+            </div>
+        </div>
     </div>
 </div>
-
-<a href="tel:6181234567" class="btn-call" title="Llamada de Emergencia - Vive Durango">📞</a>
 
 <footer>
-    <p>© 2026 Vive Durango. Tierra del Cine y el Mezcal.</p>
-    <p>Consulta nuestro <span class="privacy-link" onclick="toggleModal()">Aviso de Privacidad</span></p>
+    &copy; 2026 Vive Durango. Todos los derechos reservados.<br>
+    Diseñado para promover la cultura y el turismo duranguense.
 </footer>
 
-<div id="modalPrivacidad" class="modal">
-    <div class="modal-content">
-        <h3>Aviso de Privacidad</h3>
-        <p>Tus datos compartidos vía WhatsApp se utilizan únicamente para mejorar tu experiencia turística con Vive Durango y dar seguimiento a tus comentarios. No compartimos información con terceros.</p>
-        <button class="btn-send" onclick="toggleModal()">Cerrar</button>
-    </div>
-</div>
-
-<script>
-    const lugares = [
-        { 
-            nombre: "Paseo del Viejo Oeste", 
-            municipio: "Durango", 
-            eslogan: "Donde el cine cobra vida 🎬",
-            desc: "Set cinematográfico de famosas películas de vaqueros.",
-            foto: "https://images.unsplash.com/photo-1533167649158-6d508895b680?w=500",
-            mapa: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3643.2384784409393!2d-104.72120462534887!3d24.057929478461842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x869bb75913210131%3A0x6e9690196881c1c9!2sPaseo%20del%20Viejo%20Oeste!5e0!3m2!1ses-419!2smx!4v1700000000000!5m2!1ses-419!2smx"
-        },
-        { 
-            nombre: "Puente de Ojuela", 
-            municipio: "Mapimí", 
-            eslogan: "Un coloso en el desierto 🌵",
-            desc: "Impresionante puente colgante de 318 metros sobre un cañón.",
-            foto: "https://images.unsplash.com/photo-1508182314998-3bd49473002f?w=500",
-            mapa: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114631.54751336147!2d-103.78496735!3d25.8040019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86903f0d55555555%3A0x9d008d7777777777!2sPuente%20de%20Ojuela!5e0!3m2!1ses-419!2smx!4v1700000000000!5m2!1ses-419!2smx"
-        },
-        { 
-            nombre: "Mexiquillo", 
-            municipio: "Pueblo Nuevo", 
-            eslogan: "El jardín de piedra entre nubes ☁️",
-            desc: "Bosque, cascadas y túneles antiguos en la Sierra Madre.",
-            foto: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500",
-            mapa: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3655.882415132549!2d-105.6797222253683!3d23.7158332786962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x869e5d7777777777%3A0x7d008d7777777777!2sMexiquillo!5e0!3m2!1ses-419!2smx!4v1700000000000!5m2!1ses-419!2smx"
-        }
-    ];
-
-    const climas = {
-        "Durango": "24°C - Templado",
-        "Mapimí": "32°C - Caluroso",
-        "Nombre de Dios": "26°C - Soleado",
-        "Pueblo Nuevo": "12°C - Frío (Lleva chamarra)"
-    };
-
-    const recomendaciones = {
-        "Durango": "👟 Usa calzado cómodo para caminar por Vive Durango.",
-        "Mapimí": "🌵 Lleva mucha agua y bloqueador para el desierto.",
-        "Nombre de Dios": "🦟 No olvides repelente para las cascadas.",
-        "Pueblo Nuevo": "🌲 Clima de montaña. Ropa térmica recomendada."
-    };
-
-    function actualizarApp() {
-        const sel = document.getElementById('municipioSelect').value;
-        const weather = document.getElementById('weatherBar');
-        const sBox = document.getElementById('safetyBox');
-        const sText = document.getElementById('safetyText');
-
-        if(sel === "todos") {
-            weather.innerHTML = "📍 Explora y Vive Durango";
-            sBox.style.display = "none";
-            mostrarLugares(lugares);
-        } else {
-            weather.innerHTML = `☀️ Clima en ${sel}: ${climas[sel] || "Variable"}`;
-            sBox.style.display = "block";
-            sText.innerText = recomendaciones[sel] || "Disfruta tu viaje con Vive Durango.";
-            mostrarLugares(lugares.filter(l => l.municipio === sel));
-        }
-    }
-
-    function mostrarLugares(lista) {
-        const grid = document.getElementById('lugaresGrid');
-        grid.innerHTML = lista.length ? '' : '<p style="text-align:center">Próximamente más lugares en Vive Durango.</p>';
-        lista.forEach(l => {
-            grid.innerHTML += `
-                <div class="card">
-                    <img src="${l.foto}" class="card-img" alt="${l.nombre}">
-                    <div class="card-content">
-                        <span class="municipio-tag">${l.municipio}</span>
-                        <h3>${l.nombre}</h3>
-                        <span class="card-eslogan">${l.eslogan}</span>
-                        <p>${l.desc}</p>
-                    </div>
-                    <div class="map-container"><iframe src="${l.mapa}" loading="lazy"></iframe></div>
-                </div>`;
-        });
-    }
-
-    function enviarWhatsApp() {
-        const nom = document.getElementById('revNombre').value;
-        const txt = document.getElementById('revTexto').value;
-        const mun = document.getElementById('municipioSelect').value;
-        const miTelefono = "5216181234567"; // CAMBIA ESTO
-
-        if(nom && txt) {
-            const msg = encodeURIComponent(`¡Hola! 👋 Estoy visitando Vive Durango.\n*Nombre:* ${nom}\n*Lugar:* ${mun}\n*Comentario:* ${txt}`);
-            window.open(`https://api.whatsapp.com/send?phone=${miTelefono}&text=${msg}`, '_blank');
-        } else { alert("Por favor, completa los datos."); }
-    }
-
-    function toggleModal() {
-        const m = document.getElementById('modalPrivacidad');
-        m.style.display = (m.style.display === 'block') ? 'none' : 'block';
-    }
-
-    mostrarLugares(lugares);
-</script>
 </body>
 </html>
